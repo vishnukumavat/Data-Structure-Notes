@@ -193,11 +193,11 @@ print(graph)
 
    Output
    ```python
-   # For Undirected Graph (if above edge list is directed)
+   # For Undirected Graph (if above edge list is undirected)
    graph = {1: [2, 3], 2: [1, 4, 7], 3: [1, 4, 5, 9], 4: [2, 3], 7: [2, 8], 8: [7, 6], 6: [8, 5], 5: [6, 10, 3], 10: [5], 9: [3]}
    result = [[1, 2, 3, 4, 7, 5, 9, 8, 6, 10]]
 
-   # For Undirected Graph (if above edge list is directed)
+   # For Directed Graph (if above edge list is directed)
    graph = {1: [2, 3], 2: [4, 7], 3: [4, 5], 7: [8], 8: [6], 5: [6, 10], 9: [3]}
    result = [[1, 2, 3, 4, 7, 5, 8, 6, 10], [9]]
    ```
