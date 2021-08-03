@@ -162,7 +162,7 @@ print(graph)
     visited_map[vertex] = True
     while queue:
         active_node = queue.pop(0)
-        if graph.get(active_node): # handling for directed graph, if node doesn't have any outgoing edge or outdegree is 0. 
+        if graph.get(active_node): # handling for directed graph, if active_node doesn't have any outgoing edge or outdegree is 0. 
             for connected_node in graph[active_node]:
                 if not visited_map.get(connected_node):
                     visited_map[connected_node] = True
