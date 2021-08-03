@@ -150,3 +150,54 @@ print(graph)
 # output : {0: [1, 3, 2], 1: [0, 3, 4], 3: [0, 1, 2, 4], 2: [0, 3], 4: [1, 3]}
 ```
 
+&nbsp;
+# Graph Traversal
+
+1. BFS (Breadth First Search)
+
+   ```python
+   def bfs_traversal_helper(graph, vertex, visited_map):
+    traversed_nodes = [vertex]
+    queue = [vertex]
+    visited_map[vertex] = True
+    while queue:
+        active_node = queue.pop(0)
+        if graph.get(active_node): # handling for directed graph, if node doesn't have any outgoing edge or outdegree is 0. 
+            for connected_node in graph[active_node]:
+                if not visited_map.get(connected_node):
+                    visited_map[connected_node] = True
+                    queue.append(connected_node)
+                    traversed_nodes.append(connected_node)
+    return traversed_nodes, visited_map
+    
+    def bfs_traversal(graph):
+        # graph : type -> Adjacency List
+        result = list()
+        visited_map = dict()
+        for vertex in graph.keys():
+            if not visited_map.get(vertex):
+                traversed_nodes ,visited_map = bfs_traversal_helper(graph, vertex, visited_map)
+                result.append(traversed_nodes)
+        return result
+
+
+
+    edge_list = [[1, 2], [1, 3], [2, 4], [3, 4], [2, 7], [7, 8], [8, 6], [5, 6], [5, 10], [3, 5],[9, 3]]
+    
+    graph = convert_graph_to_adjacency_list(edge_list)
+    result = bfs_traversal(graph)
+
+    print(graph)
+    print(result)
+   ```
+
+   Output
+   ```python
+   # For Undirected Graph (if above edge list is directed)
+   graph = {1: [2, 3], 2: [1, 4, 7], 3: [1, 4, 5, 9], 4: [2, 3], 7: [2, 8], 8: [7, 6], 6: [8, 5], 5: [6, 10, 3], 10: [5], 9: [3]}
+   result = [[1, 2, 3, 4, 7, 5, 9, 8, 6, 10]]
+
+   # For Undirected Graph (if above edge list is directed)
+   graph = {1: [2, 3], 2: [4, 7], 3: [4, 5], 7: [8], 8: [6], 5: [6, 10], 9: [3]}
+   result = [[1, 2, 3, 4, 7, 5, 8, 6, 10], [9]]
+   ```
